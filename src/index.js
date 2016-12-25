@@ -43,6 +43,10 @@ AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedReq
 AlfredHandler.prototype.intentHandlers = {
 	"SmartestIntent": function(intent, session, response) {
 		handleSmartestRequest(response);
+	},
+
+	"PrettiestIntent": function(intent, session, response) {
+		handlePrettiestRequest(response);
 	}
 
 	// Handle Intents here
@@ -112,6 +116,11 @@ function handleWelcomeRequest(response) {
 function handleSmartestRequest(response) {
 	var smartestResponse = "The glorious Mr. Yen, of course, he is the smartest of them all!";
 	response.tell(smartestResponse);
+}
+
+function handlePrettiestRequest(response) {
+	var prettiestResponse = "Princess Kathlyn is the prettiest of them all!";
+	response.tell(prettiestResponse);
 }
 
 // Helper Functions
