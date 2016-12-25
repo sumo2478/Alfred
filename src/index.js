@@ -10,6 +10,9 @@ var PST_TIMEZONE_OFFSET = 8;
  */
 var AlexaSkill = require('./AlexaSkill');
 var EventGhost = require('./EventGhost');
+var Intent = require('./IntentHandler');
+
+var intentHandler = new Intent();
 
 var AlfredHandler = function() {
 	AlexaSkill.call(this, APP_ID);
@@ -30,7 +33,7 @@ AlfredHandler.prototype.eventHandlers.onSessionStarted = function (sessionStarte
 AlfredHandler.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     console.log("onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
 
-    handleWelcomeRequest(response);
+    intentHandler.welcomeIntent(null, session, response);
 };
 
 AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
@@ -44,27 +47,19 @@ AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedReq
  */
 AlfredHandler.prototype.intentHandlers = {
 	"SmartestIntent": function(intent, session, response) {
-		handleSmartestRequest(response);
+		intentHandler.smartestIntent(intent, session, response);
 	},
 
 	"PrettiestIntent": function(intent, session, response) {
-		handlePrettiestRequest(response);
+		intentHandler.prettiestIntent(intent, session, response);
 	},
 
 	"HelloIntent": function(intent, session, response) {
-		handleWelcomeRequest(response)
+		intentHandler.welcomeIntent(intent, session, response);
 	},
 
 	"ItunesAction": function(intent, session, response) {
-		var eventGhost = new EventGhost();
-		eventGhost.openItunes(
-			function() {
-				response.tell("Right away sir");
-			},
-			function() {
-				response.tell("Sorry, I was unable to perform that action");
-			}
-		);
+        intentHandler.openItunesIntent(intent, session, response);  
 	},
 
 	"AMAZON.HelpIntent": function (intent, session, response) {
@@ -72,13 +67,11 @@ AlfredHandler.prototype.intentHandlers = {
     },
 
     "AMAZON.StopIntent": function (intent, session, response) {
-        var speechOutput = "Goodbye, I hope I was able to be of assistance.";
-        response.tell(speechOutput);
+        intentHandler.goodbyeIntent(intent, session, response);  
     },
 
     "AMAZON.CancelIntent": function (intent, session, response) {
-        var speechOutput = "Goodbye, I hope I was able to be of assistance";
-        response.tell(speechOutput);
+        intentHandler.goodbyeIntent(intent, session, response);  
     }
 
 	// Handle Intents here
@@ -116,68 +109,6 @@ AlfredHandler.prototype.intentHandlers = {
     }
     */
 };
-
-// Business Logic
-function handleWelcomeRequest(response) {
-	var morningGreeting = getMorningGreetingFromCurrentTime()
-	var greetingResponse = morningGreeting + " Mr. Yen. What can I do for you today?";
-	var repromptOutput = "I am here to serve you. What would you like me to do for you?";
-
-	/*
-    var whichCityPrompt = "Which city would you like tide information for?",
-        speechOutput = {
-            speech: "<speak>Welcome to Tide Pooler. "
-                + "<audio src='https://s3.amazonaws.com/ask-storage/tidePooler/OceanWaves.mp3'/>"
-                + whichCityPrompt
-                + "</speak>",
-            type: AlexaSkill.speechOutputType.SSML
-        },
-        repromptOutput = {
-            speech: "I can lead you through providing a city and "
-                + "day of the week to get tide information, "
-                + "or you can simply open Tide Pooler and ask a question like, "
-                + "get tide information for Seattle on Saturday. "
-                + "For a list of supported cities, ask what cities are supported. "
-                + whichCityPrompt,
-            type: AlexaSkill.speechOutputType.PLAIN_TEXT
-        };*/
-
-    response.ask(greetingResponse, repromptOutput);
-}
-
-function handleSmartestRequest(response) {
-	var smartestResponse = "The glorious Mr. Yen, of course, he is the smartest of them all!";
-	response.tell(smartestResponse);
-}
-
-function handlePrettiestRequest(response) {
-	var prettiestResponse = "Princess Kathlyn is the prettiest of them all!";
-	response.tell(prettiestResponse);
-}
-
-// Helper Functions
-function getMorningGreetingFromCurrentTime() {
-	var date = new Date();
-	date.setHours(date.getHours() - PST_TIMEZONE_OFFSET); // Subtract 8 for PST timezone
-	var hours = date.getHours();
-
-	console.log("Current time: " + date);
-
-	/* hour is before noon */
-	if (hours >= 5 && hours < 12 ) { 
-	    return "Good morning";
-	} 
-	/* Hour is from noon to 5pm (actually to 5:59 pm) */
-	else if (hours >= 12 && hours <= 17) { 
-	    return "Good afternoon"; 
-	} 
-	/* the hour is after 5pm, so it is between 6pm and midnight */
-	else if ((hours > 17 && hours <= 24) || (hours >= 0 && hours < 5)) { 
-	    return "Good evening";
-	} else { 
-	    return "I'm not sure what time it is";
-	} 
-}
 
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {

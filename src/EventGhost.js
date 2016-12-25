@@ -1,8 +1,7 @@
 var http = require('http');
 
-var EG_IP = '73.158.191.218';
-// var EG_IP = "10.0.0.214";
-var EG_PORT = '2335';
+var EG_IP = process.env.EVENT_GHOST_IP 
+var EG_PORT = process.env.EVENT_GHOST_PORT
 var EG_EVENT = 'EchoToEG';
 
 function EventGhost() {
