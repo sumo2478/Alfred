@@ -27,14 +27,17 @@ IntentHandler.prototype.prettiestIntent = function(intent, session, response) {
 
 IntentHandler.prototype.openItunesIntent = function(intent, session, response) {
 	var eventGhost = new EventGhost();
-	eventGhost.openItunes(
-		function() {
-			response.tell("Right away sir");
-		},
-		function() {
-			response.tell("Sorry, I was unable to perform that action");
-		}
-	);
+	eventGhost.openItunes(response);
+}
+
+IntentHandler.prototype.openGoogleIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.openGoogle(response);
+}
+
+IntentHandler.prototype.openTrafficToWorkIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.openTrafficToWork(response);
 }
 
 IntentHandler.prototype.goodbyeIntent = function(intent, session, response) {

@@ -3,7 +3,6 @@ Alfred Main Code
 */
 
 var APP_ID = 'amzn1.ask.skill.4eb021ba-4dbd-43d1-8213-24ca174f1c7d';
-var PST_TIMEZONE_OFFSET = 8;
 
 /**
  * The AlexaSkill prototype and helper functions
@@ -58,9 +57,17 @@ AlfredHandler.prototype.intentHandlers = {
 		intentHandler.welcomeIntent(intent, session, response);
 	},
 
-	"ItunesAction": function(intent, session, response) {
+	"ItunesIntent": function(intent, session, response) {
         intentHandler.openItunesIntent(intent, session, response);  
 	},
+
+    "GooglePageIntent": function(intent, session, response) {
+        intentHandler.openGoogleIntent(intent, session, response);
+    },
+
+    "TrafficToWorkIntent": function(intent, session, response) {
+        intentHandler.openTrafficToWorkIntent(intent, session, response);
+    },
 
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");

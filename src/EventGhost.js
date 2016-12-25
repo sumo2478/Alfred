@@ -2,7 +2,6 @@ var http = require('http');
 
 var EG_IP = process.env.EVENT_GHOST_IP 
 var EG_PORT = process.env.EVENT_GHOST_PORT
-var EG_EVENT = 'EchoToEG';
 
 function EventGhost() {
 
@@ -11,12 +10,26 @@ function EventGhost() {
 /**
 Opens itunes on the computer
 */
-EventGhost.prototype.openItunes = function(successCallback, failureCallback) {
-	this.callEchoToSG("ITUNES", successCallback, failureCallback);
+EventGhost.prototype.openItunes = function(response) {
+	callEchoToEG("ITUNES", defaultSuccessCallback(response), defaultFailureCallback(response));
+}
+
+/**
+Opens google on the computer
+*/
+EventGhost.prototype.openGoogle = function(response) {
+	callEchoToEG("GOOGLE", defaultSuccessCallback(response), defaultFailureCallback(response));
+}
+
+/**
+Brings up the traffic report from home to work
+*/
+EventGhost.prototype.openTrafficToWork = function(response) {
+	callEchoToEG("TRAFFICWORK", defaultSuccessCallback(response), defaultFailureCallback(response));	
 }
 
 // Helper function to call network request to event ghost
-EventGhost.prototype.callEchoToSG = function(eventName, successCallback, failureCallback) {
+function callEchoToEG(eventName, successCallback, failureCallback) {
 	// Options included where we should send the request to with or without basic auth
     var EG_uri = '/index.html?' + eventName;
     var get_options = {
@@ -56,6 +69,26 @@ EventGhost.prototype.callEchoToSG = function(eventName, successCallback, failure
     });
 
     get_req.end();
+}
+
+function defaultSuccessCallback(response) {
+	if (response) {
+		return function() {
+			response.tell("Right away sir");
+		}
+	} else {
+		return function() {}
+	}		
+}
+
+function defaultFailureCallback(response) {
+	if (response) {
+		return function() {
+			response.tell("Sorry, I was unable to perform that action");
+		}
+	} else {
+		return function() {}
+	}	
 }
 
 module.exports = EventGhost;

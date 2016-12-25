@@ -10,7 +10,13 @@
 			"intent": "HelloIntent"
 		},
 		{
-		    "intent": "ItunesAction"
+		    "intent": "ItunesIntent"
+		},
+		{
+			"intent": "GooglePageIntent"
+		},
+		{
+			"intent": "TrafficToWorkIntent"
 		},
 		{
 	      "intent": "AMAZON.HelpIntent"
