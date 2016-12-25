@@ -40,6 +40,21 @@ IntentHandler.prototype.openTrafficToWorkIntent = function(intent, session, resp
 	eventGhost.openTrafficToWork(response);
 }
 
+IntentHandler.prototype.showDashboardIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.minimizeScreens(response);
+}
+
+IntentHandler.prototype.openWeatherIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.openWeather(response);
+}
+
+IntentHandler.prototype.maximizeScreensIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.maximizeScreens(response);
+}
+
 IntentHandler.prototype.goodbyeIntent = function(intent, session, response) {
 	var speechOutput = "Very good sir, have a great day!";
 	response.tell(speechOutput);

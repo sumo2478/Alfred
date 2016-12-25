@@ -28,6 +28,34 @@ EventGhost.prototype.openTrafficToWork = function(response) {
 	callEchoToEG("TRAFFICWORK", defaultSuccessCallback(response), defaultFailureCallback(response));	
 }
 
+/**
+Starts playing CNBC News Livestream 
+*/
+EventGhost.prototype.openNews = function(response) {
+	callEchoToEG("CNBCNEWS", defaultSuccessCallback(response), defaultFailureCallback(response));	
+}
+
+/**
+Opens the weather
+*/
+EventGhost.prototype.openWeather = function(response) {
+	callEchoToEG("WEATHER", defaultSuccessCallback(response), defaultFailureCallback(response));	
+}
+
+/**
+Minimizes all screens
+*/
+EventGhost.prototype.minimizeScreens = function(response) {
+	callEchoToEG("MINIMIZE", defaultSuccessCallback(response), defaultFailureCallback(response));	
+}
+
+/**
+Maximizes all screens
+*/
+EventGhost.prototype.maximizeScreens = function(response) {
+	callEchoToEG("MAXIMIZE", defaultSuccessCallback(response), defaultFailureCallback(response));	
+}
+
 // Helper function to call network request to event ghost
 function callEchoToEG(eventName, successCallback, failureCallback) {
 	// Options included where we should send the request to with or without basic auth

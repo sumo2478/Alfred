@@ -19,6 +19,15 @@
 			"intent": "TrafficToWorkIntent"
 		},
 		{
+			"intent": "WeatherIntent"
+		},
+		{
+			"intent": "ShowDashboardIntent"
+		},
+		{
+			"intent": "MaximizeScreenIntent"
+		},				
+		{
 	      "intent": "AMAZON.HelpIntent"
 	    },
 	    {

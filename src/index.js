@@ -69,6 +69,18 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.openTrafficToWorkIntent(intent, session, response);
     },
 
+    "WeatherIntent": function(intent, session, response) {
+        intentHandler.openWeatherIntent(intent, session, response);
+    },
+
+    "ShowDashboardIntent": function(intent, session, response) {
+        intentHandler.showDashboardIntent(intent, session, response);
+    },
+
+    "MaximizeScreenIntent": function(intent, session, response) {
+        intentHandler.maximizeScreensIntent(intent, session, response);
+    },
+
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");
     },
