@@ -5,6 +5,18 @@
 		},
 		{
 			"intent": "PrettiestIntent"
-		}
+		},
+		{
+			"intent": "HelloIntent"
+		},
+		{
+	      "intent": "AMAZON.HelpIntent"
+	    },
+	    {
+	      "intent": "AMAZON.StopIntent"
+	    },
+	    {
+	      "intent": "AMAZON.CancelIntent"
+	    }
 	]
 }

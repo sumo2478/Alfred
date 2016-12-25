@@ -3,6 +3,7 @@ Alfred Main Code
 */
 
 var APP_ID = 'amzn1.ask.skill.4eb021ba-4dbd-43d1-8213-24ca174f1c7d';
+var PST_TIMEZONE_OFFSET = 8;
 
 /**
  * The AlexaSkill prototype and helper functions
@@ -47,7 +48,25 @@ AlfredHandler.prototype.intentHandlers = {
 
 	"PrettiestIntent": function(intent, session, response) {
 		handlePrettiestRequest(response);
-	}
+	},
+
+	"HelloIntent": function(intent, session, response) {
+		handleWelcomeRequest(response)
+	},
+
+	"AMAZON.HelpIntent": function (intent, session, response) {
+        response.tell("Help");
+    },
+
+    "AMAZON.StopIntent": function (intent, session, response) {
+        var speechOutput = "Goodbye, I hope I was able to be of assistance.";
+        response.tell(speechOutput);
+    },
+
+    "AMAZON.CancelIntent": function (intent, session, response) {
+        var speechOutput = "Goodbye, I hope I was able to be of assistance";
+        response.tell(speechOutput);
+    }
 
 	// Handle Intents here
 	/*
@@ -126,7 +145,10 @@ function handlePrettiestRequest(response) {
 // Helper Functions
 function getMorningGreetingFromCurrentTime() {
 	var date = new Date();
+	date.setHours(date.getHours() - PST_TIMEZONE_OFFSET); // Subtract 8 for PST timezone
 	var hours = date.getHours();
+
+	console.log("Current time: " + date);
 
 	/* hour is before noon */
 	if (hours >= 5 && hours < 12 ) { 
@@ -138,7 +160,7 @@ function getMorningGreetingFromCurrentTime() {
 	} 
 	/* the hour is after 5pm, so it is between 6pm and midnight */
 	else if ((hours > 17 && hours <= 24) || (hours >= 0 && hours < 5)) { 
-	    return "Good night";
+	    return "Good evening";
 	} else { 
 	    return "I'm not sure what time it is";
 	} 
