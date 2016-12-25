@@ -13,3 +13,5 @@ HelloIntent good evening
 HelloIntent good afternoon
 HelloIntent I'm awake
 HelloIntent hello
+HelloIntent that I need him
+HelloIntent to come online

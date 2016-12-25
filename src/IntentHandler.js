@@ -7,8 +7,9 @@ function IntentHandler() {
 }
 
 IntentHandler.prototype.welcomeIntent = function(intent, session, response) {
-	var morningGreeting = getMorningGreetingFromCurrentTime()
-	var greetingResponse = morningGreeting + " Mr. Yen. How may I be of assistance?";
+	var morningGreeting = getMorningGreetingFromCurrentTime();
+	var assistanceGreeting = getAssistanceGreeting();
+	var greetingResponse = morningGreeting + " Mr. Yen. " + assistanceGreeting;
 	var repromptOutput = "I am here to serve you. What would you like me to do for you?";
 
     response.ask(greetingResponse, repromptOutput);
@@ -37,7 +38,7 @@ IntentHandler.prototype.openItunesIntent = function(intent, session, response) {
 }
 
 IntentHandler.prototype.goodbyeIntent = function(intent, session, response) {
-	var speechOutput = "Goodbye, I hope I was able to be of assistance.";
+	var speechOutput = "Very good sir, have a great day!";
 	response.tell(speechOutput);
 }
 
@@ -63,6 +64,17 @@ function getMorningGreetingFromCurrentTime() {
 	} else { 
 	    return "I'm not sure what time it is";
 	} 
+}
+
+function getAssistanceGreeting() {
+	var randomNumber = Math.floor((Math.random() * 2));
+	if (randomNumber == 0) {
+		return "How may I be of assistance?";
+	} else if (randomNumber == 1) {
+		return "Alfred at your service";
+	} else {
+		return "Error";
+	}
 }
 
 module.exports = IntentHandler;
