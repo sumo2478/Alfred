@@ -28,7 +28,6 @@ AlfredHandler.prototype.eventHandlers.onSessionStarted = function (sessionStarte
 AlfredHandler.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     console.log("onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
 
-    // TODO: Handle Welcome Request
     handleWelcomeRequest(response);
 };
 
@@ -42,6 +41,10 @@ AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedReq
  * override intentHandlers to map intent handling functions.
  */
 AlfredHandler.prototype.intentHandlers = {
+	"SmartestIntent": function(intent, session, response) {
+		handleSmartestRequest(response);
+	}
+
 	// Handle Intents here
 	/*
     "OneshotTideIntent": function (intent, session, response) {
@@ -80,7 +83,8 @@ AlfredHandler.prototype.intentHandlers = {
 
 // Business Logic
 function handleWelcomeRequest(response) {
-	var greetingResponse = "Hello Mr. Yen. What can I do for you today?";
+	var morningGreeting = getMorningGreetingFromCurrentTime()
+	var greetingResponse = morningGreeting + " Mr. Yen. What can I do for you today?";
 	var repromptOutput = "I am here to serve you. What would you like me to do for you?";
 
 	/*
@@ -103,6 +107,32 @@ function handleWelcomeRequest(response) {
         };*/
 
     response.ask(greetingResponse, repromptOutput);
+}
+
+function handleSmartestRequest(response) {
+	var smartestResponse = "The glorious Mr. Yen, of course, he is the smartest of them all!";
+	response.tell(smartestResponse);
+}
+
+// Helper Functions
+function getMorningGreetingFromCurrentTime() {
+	var date = new Date();
+	var hours = date.getHours();
+
+	/* hour is before noon */
+	if (hours >= 5 && hours < 12 ) { 
+	    return "Good morning";
+	} 
+	/* Hour is from noon to 5pm (actually to 5:59 pm) */
+	else if (hours >= 12 && hours <= 17) { 
+	    return "Good afternoon"; 
+	} 
+	/* the hour is after 5pm, so it is between 6pm and midnight */
+	else if ((hours > 17 && hours <= 24) || (hours >= 0 && hours < 5)) { 
+	    return "Good night";
+	} else { 
+	    return "I'm not sure what time it is";
+	} 
 }
 
 // Create the handler that responds to the Alexa Request.
