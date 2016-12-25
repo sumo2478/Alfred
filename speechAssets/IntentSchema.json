@@ -10,6 +10,9 @@
 			"intent": "HelloIntent"
 		},
 		{
+		    "intent": "ItunesAction"
+		},
+		{
 	      "intent": "AMAZON.HelpIntent"
 	    },
 	    {

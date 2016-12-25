@@ -9,6 +9,7 @@ var PST_TIMEZONE_OFFSET = 8;
  * The AlexaSkill prototype and helper functions
  */
 var AlexaSkill = require('./AlexaSkill');
+var EventGhost = require('./EventGhost');
 
 var AlfredHandler = function() {
 	AlexaSkill.call(this, APP_ID);
@@ -52,6 +53,18 @@ AlfredHandler.prototype.intentHandlers = {
 
 	"HelloIntent": function(intent, session, response) {
 		handleWelcomeRequest(response)
+	},
+
+	"ItunesAction": function(intent, session, response) {
+		var eventGhost = new EventGhost();
+		eventGhost.openItunes(
+			function() {
+				response.tell("Right away sir");
+			},
+			function() {
+				response.tell("Sorry, I was unable to perform that action");
+			}
+		);
 	},
 
 	"AMAZON.HelpIntent": function (intent, session, response) {

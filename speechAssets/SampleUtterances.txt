@@ -1,7 +1,13 @@
 SmartestIntent who is the smartest of them all
 SmartestIntent who is the smartest person in the world
+
 PrettiestIntent who is the prettiest of them all
 PrettiestIntent who is the prettiest person in the world
+
+ItunesAction open itunes
+ItunesAction bring up itunes
+ItunesAction display itunes
+
 HelloIntent good morning
 HelloIntent good evening
 HelloIntent good afternoon
