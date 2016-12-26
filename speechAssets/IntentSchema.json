@@ -28,6 +28,12 @@
 			"intent": "MaximizeScreenIntent"
 		},				
 		{
+			"intent": "BestParentsIntent"
+		},
+		{
+			"intent": "PowerDownIntent"
+		},
+		{
 	      "intent": "AMAZON.HelpIntent"
 	    },
 	    {

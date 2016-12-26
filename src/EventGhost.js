@@ -43,6 +43,13 @@ EventGhost.prototype.openWeather = function(response) {
 }
 
 /**
+Powes the system down
+*/
+EventGhost.prototype.powerDown = function(response) {
+	callEchoToEG("POWERDOWN", defaultSuccessCallback(response), defaultFailureCallback(response));	
+}
+
+/**
 Minimizes all screens
 */
 EventGhost.prototype.minimizeScreens = function(response) {

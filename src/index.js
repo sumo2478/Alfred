@@ -73,6 +73,10 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.openWeatherIntent(intent, session, response);
     },
 
+    "PowerDownIntent": function(intent, session, response) {
+        intentHandler.powerDownIntent(intent, session, response);
+    },
+
     "ShowDashboardIntent": function(intent, session, response) {
         intentHandler.showDashboardIntent(intent, session, response);
     },
@@ -80,6 +84,10 @@ AlfredHandler.prototype.intentHandlers = {
     "MaximizeScreenIntent": function(intent, session, response) {
         intentHandler.maximizeScreensIntent(intent, session, response);
     },
+
+    "BestParentsIntent": function(intent, session, response) {
+        intentHandler.bestParentsIntent(intent, session, response);
+    },    
 
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");

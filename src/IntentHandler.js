@@ -50,9 +50,18 @@ IntentHandler.prototype.openWeatherIntent = function(intent, session, response) 
 	eventGhost.openWeather(response);
 }
 
+IntentHandler.prototype.powerDownIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.powerDown(response);
+}
+
 IntentHandler.prototype.maximizeScreensIntent = function(intent, session, response) {
 	var eventGhost = new EventGhost();
 	eventGhost.maximizeScreens(response);
+}
+
+IntentHandler.prototype.bestParentsIntent = function(intent, session, response) {
+	response.tell("I guess it would probably be Van and Ting");
 }
 
 IntentHandler.prototype.goodbyeIntent = function(intent, session, response) {

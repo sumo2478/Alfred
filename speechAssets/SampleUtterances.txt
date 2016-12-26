@@ -25,6 +25,11 @@ WeatherIntent show me the weather
 WeatherIntent what will the weather be like today
 WeatherIntent bring up the weather
 
+PowerDownIntent power down
+PowerDownIntent shut down
+PowerDownIntent I'm leaving
+PowerDownIntent I'm going to work
+
 ShowDashboardIntent bring up the dashboard
 ShowDashboardIntent minimize all screens
 ShowDashboardIntent show me the hud
@@ -39,6 +44,10 @@ MaximizeScreenIntent bring back up the last screen
 MaximizeScreenIntent bring back up the screen
 MaximizeScreenIntent open up the last screen
 MaximizeScreenIntent maximize the screen
+
+BestParentsIntent who are the best parents in the world
+BestParentsIntent give me the best parents
+BestParentsIntent tell me who the best parents are
 
 HelloIntent good morning
 HelloIntent good evening
