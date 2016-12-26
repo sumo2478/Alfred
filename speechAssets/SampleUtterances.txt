@@ -49,6 +49,19 @@ BestParentsIntent who are the best parents in the world
 BestParentsIntent give me the best parents
 BestParentsIntent tell me who the best parents are
 
+TogglePauseIntent pause
+TogglePauseIntent pause the video
+TogglePauseIntent pause the movie
+TogglePauseIntent pause the show
+TogglePauseIntent pause the music
+TogglePauseIntent play
+TogglePauseIntent play the video
+TogglePauseIntent play the music
+TogglePauseIntent play the movie
+TogglePauseIntent play the show
+TogglePauseIntent stop playing
+TogglePauseIntent stop
+
 HelloIntent good morning
 HelloIntent good evening
 HelloIntent good afternoon

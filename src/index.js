@@ -87,7 +87,11 @@ AlfredHandler.prototype.intentHandlers = {
 
     "BestParentsIntent": function(intent, session, response) {
         intentHandler.bestParentsIntent(intent, session, response);
-    },    
+    },  
+
+    "TogglePauseIntent": function(intent, session, response) {
+        intentHandler.togglePauseIntent(intent, session, response);
+    },        
 
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");

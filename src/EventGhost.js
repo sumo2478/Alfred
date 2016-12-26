@@ -63,6 +63,13 @@ EventGhost.prototype.maximizeScreens = function(response) {
 	callEchoToEG("MAXIMIZE", defaultSuccessCallback(response), defaultFailureCallback(response));	
 }
 
+/**
+Toggles the puase button
+*/
+EventGhost.prototype.togglePause = function(response) {
+    callEchoToEG("TOGGLEPAUSE", defaultSuccessCallback(response), defaultFailureCallback(response));   
+}
+
 // Helper function to call network request to event ghost
 function callEchoToEG(eventName, successCallback, failureCallback) {
 	// Options included where we should send the request to with or without basic auth

@@ -69,6 +69,11 @@ IntentHandler.prototype.goodbyeIntent = function(intent, session, response) {
 	response.tell(speechOutput);
 }
 
+IntentHandler.prototype.togglePauseIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.togglePause(response);	
+}
+
 // Helper Functions
 function getMorningGreetingFromCurrentTime() {
 	var date = new Date();
