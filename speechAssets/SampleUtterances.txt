@@ -62,6 +62,10 @@ TogglePauseIntent play the show
 TogglePauseIntent stop playing
 TogglePauseIntent stop
 
+MovieTimesIntent bring up movie times
+MovieTimesIntent show me when the movies are playing
+MovieTimesIntent let me see the movie show times
+
 HelloIntent good morning
 HelloIntent good evening
 HelloIntent good afternoon

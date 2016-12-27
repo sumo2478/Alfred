@@ -74,6 +74,11 @@ IntentHandler.prototype.togglePauseIntent = function(intent, session, response) 
 	eventGhost.togglePause(response);	
 }
 
+IntentHandler.prototype.movieTimesIntent = function(intent, session, response) {
+	var eventGhost = new EventGhost();
+	eventGhost.getSaratogaMovieTimes(response);	
+}
+
 // Helper Functions
 function getMorningGreetingFromCurrentTime() {
 	var date = new Date();

@@ -91,7 +91,11 @@ AlfredHandler.prototype.intentHandlers = {
 
     "TogglePauseIntent": function(intent, session, response) {
         intentHandler.togglePauseIntent(intent, session, response);
-    },        
+    }, 
+
+    "MovieTimesIntent": function(intent, session, response) {
+        intentHandler.movieTimesIntent(intent, session, response);
+    },
 
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");

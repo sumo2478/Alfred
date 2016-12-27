@@ -35,6 +35,9 @@
 		},
 		{
 			"intent": "TogglePauseIntent"
+		},	
+		{
+			"intent": "MovieTimesIntent"
 		},
 		{
 	      "intent": "AMAZON.HelpIntent"

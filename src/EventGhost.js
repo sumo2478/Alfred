@@ -70,6 +70,13 @@ EventGhost.prototype.togglePause = function(response) {
     callEchoToEG("TOGGLEPAUSE", defaultSuccessCallback(response), defaultFailureCallback(response));   
 }
 
+/**
+Pulls up saratoga amc movie times
+*/
+EventGhost.prototype.getSaratogaMovieTimes = function(response) {
+    callEchoToEG("SARATOGAMOVIETIMES", defaultSuccessCallback(response), defaultFailureCallback(response));   
+}
+
 // Helper function to call network request to event ghost
 function callEchoToEG(eventName, successCallback, failureCallback) {
 	// Options included where we should send the request to with or without basic auth
