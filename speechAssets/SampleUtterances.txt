@@ -13,6 +13,9 @@ GooglePageIntent bring up google
 GooglePageIntent bring up the search page
 GooglePageIntent open search
 GooglePageIntent I want to search for something
+GooglePageIntent search for {Query}
+GooglePageIntent look up {Query}
+GooglePageIntent I want to know {Query}
 
 TrafficToWorkIntent bring up the traffic report
 TrafficToWorkIntent directions to work

@@ -32,7 +32,16 @@ IntentHandler.prototype.openItunesIntent = function(intent, session, response) {
 
 IntentHandler.prototype.openGoogleIntent = function(intent, session, response) {
 	var eventGhost = new EventGhost();
-	eventGhost.openGoogle(response);
+	var query = intent.slots.Query;
+
+	// If there is no query provided then just open google
+	if (!query || !query.value) {
+		response.tell("I wasn't able to search for that. TODO handle this");
+	} 
+	// Pass the query to event ghost
+	else {
+		eventGhost.searchGoogle(response, query.value);
+	}		
 }
 
 IntentHandler.prototype.openTrafficToWorkIntent = function(intent, session, response) {

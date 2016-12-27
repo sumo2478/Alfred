@@ -13,7 +13,13 @@
 		    "intent": "ItunesIntent"
 		},
 		{
-			"intent": "GooglePageIntent"
+			"intent": "GooglePageIntent",
+			"slots": [
+		        {
+		          "name": "Query",
+		          "type": "SEARCH_QUERY"
+		        }				
+			]
 		},
 		{
 			"intent": "TrafficToWorkIntent"

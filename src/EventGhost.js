@@ -22,6 +22,13 @@ EventGhost.prototype.openGoogle = function(response) {
 }
 
 /**
+Searches query on google
+*/
+EventGhost.prototype.searchGoogle = function(response, query) {
+	callEchoToEG("GOOGLESEARCH", defaultSuccessCallback(response), defaultFailureCallback(response), query);
+}
+
+/**
 Brings up the traffic report from home to work
 */
 EventGhost.prototype.openTrafficToWork = function(response) {
@@ -78,9 +85,13 @@ EventGhost.prototype.getSaratogaMovieTimes = function(response) {
 }
 
 // Helper function to call network request to event ghost
-function callEchoToEG(eventName, successCallback, failureCallback) {
+function callEchoToEG(eventName, successCallback, failureCallback, queryParameter) {
 	// Options included where we should send the request to with or without basic auth
     var EG_uri = '/index.html?' + eventName;
+    if (queryParameter) {
+    	EG_uri = EG_uri + '&' + require('querystring').escape(queryParameter);
+    }
+
     var get_options = {
         host: EG_IP,
         port: EG_PORT,
