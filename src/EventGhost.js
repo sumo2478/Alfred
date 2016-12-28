@@ -31,8 +31,8 @@ EventGhost.prototype.searchGoogle = function(response, query) {
 /**
 Brings up the traffic report from home to work
 */
-EventGhost.prototype.openTrafficToWork = function(response) {
-	callEchoToEG("TRAFFICWORK", defaultSuccessCallback(response), defaultFailureCallback(response));	
+EventGhost.prototype.openTrafficToWork = function(responseHandler) {
+	callEchoToEG("TRAFFICWORK", defaultSuccessCallback(responseHandler), defaultFailureCallback(responseHandler));	
 }
 
 /**
@@ -131,20 +131,20 @@ function callEchoToEG(eventName, successCallback, failureCallback, queryParamete
     get_req.end();
 }
 
-function defaultSuccessCallback(response) {
-	if (response) {
+function defaultSuccessCallback(responseHandler) {
+	if (responseHandler) {
 		return function() {
-			response.tell("Right away sir");
+			responseHandler("Right away sir");
 		}
 	} else {
 		return function() {}
 	}		
 }
 
-function defaultFailureCallback(response) {
-	if (response) {
+function defaultFailureCallback(responseHandler) {
+	if (responseHandler) {
 		return function() {
-			response.tell("Sorry, I was unable to perform that action");
+			responseHandler("Sorry, I was unable to perform that action");
 		}
 	} else {
 		return function() {}

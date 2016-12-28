@@ -46,6 +46,12 @@
 			"intent": "MovieTimesIntent"
 		},
 		{
+			"intent": "OpenSessionIntent"
+		},
+		{
+			"intent": "CloseSessionIntent"
+		},				
+		{
 	      "intent": "AMAZON.HelpIntent"
 	    },
 	    {

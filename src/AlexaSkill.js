@@ -63,9 +63,26 @@ AlexaSkill.prototype.eventHandlers = {
 
         console.log("Intent name: " + intentName);
 
+        var responseHandler = function(message, isQuestion, reprompt) {
+            console.log("Entering response handler");
+
+            if (session.attributes.activeSession) {
+                // TODO: Use the message from the function if it's a question
+                console.log("Performed request on open session");
+                response.ask("What next?", "What next?");
+            } else if (isQuestion) {    
+                console.log("Asked question: " + message);
+                repromptMessage = reprompt || "";            
+                response.ask(message, repromptMessage);
+            } else {
+                console.log("Performed action")
+                response.tell(message);
+            }
+        }
+
         if (intentHandler) {
             console.log('dispatch intent = ' + intentName);
-            intentHandler.call(this, intent, session, response);
+            intentHandler.call(this, intent, session, responseHandler);            
         } else {
             throw 'Unsupported intent = ' + intentName;
         }

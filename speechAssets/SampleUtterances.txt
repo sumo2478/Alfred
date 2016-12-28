@@ -65,6 +65,14 @@ MovieTimesIntent bring up movie times
 MovieTimesIntent show me when the movies are playing
 MovieTimesIntent let me see the movie show times
 
+OpenSessionIntent open a session
+OpenSessionIntent start a session
+OpenSessionIntent begin session
+
+CloseSessionIntent close the session
+CloseSessionIntent exit session
+CloseSessionIntent end session
+
 HelloIntent good morning
 HelloIntent good evening
 HelloIntent good afternoon

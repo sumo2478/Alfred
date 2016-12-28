@@ -6,86 +6,112 @@ function IntentHandler() {
 
 }
 
-IntentHandler.prototype.welcomeIntent = function(intent, session, response) {
-	var morningGreeting = getMorningGreetingFromCurrentTime();
+IntentHandler.prototype.welcomeResponse = function() {
+var morningGreeting = getMorningGreetingFromCurrentTime();
 	var assistanceGreeting = getAssistanceGreeting();
 	var greetingResponse = morningGreeting + " Mr. Yen. " + assistanceGreeting;
 	var repromptOutput = "I am here to serve you. What would you like me to do for you?";
 
-    response.ask(greetingResponse, repromptOutput);
+	return {
+		"message": greetingResponse,
+		"reprompt": repromptOutput
+	}
 }
 
-IntentHandler.prototype.smartestIntent = function(intent, session, response) {
+IntentHandler.prototype.welcomeIntent = function(intent, session, responseHandler) {
+	var greeting = this.welcomeResponse();
+
+	responseHandler(greeting.message, true, greeting.reprompt);
+}
+
+IntentHandler.prototype.smartestIntent = function(intent, session, responseHandler) {
 	var smartestResponse = "The glorious Mr. Yen, of course, he is the smartest of them all!";
-	response.tell(smartestResponse);
+
+	responseHandler(smartestResponse)
 }
 
-IntentHandler.prototype.prettiestIntent = function(intent, session, response) {
+IntentHandler.prototype.openSessionIntent = function(intent, session, responseHandler) {
+	console.log("Opening a session");
+
+	var openSessionResponse = "Session opened";
+	session.attributes.activeSession = true	
+	responseHandler(openSessionResponse, true)
+}
+
+IntentHandler.prototype.closeSessionIntent = function(intent, session, responseHandler) {
+	console.log("Closing a session");
+
+	var closeSessionResponse = "Session close";
+	session.attributes.activeSession = false
+	responseHandler(closeSessionResponse)
+}
+
+IntentHandler.prototype.prettiestIntent = function(intent, session, responseHandler) {
 	var prettiestResponse = "Princess Kathlyn is the prettiest of them all!";
-	response.tell(prettiestResponse);
+	responseHandler(prettiestResponse);
 }
 
-IntentHandler.prototype.openItunesIntent = function(intent, session, response) {
+IntentHandler.prototype.openItunesIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.openItunes(response);
+	eventGhost.openItunes(responseHandler);
 }
 
-IntentHandler.prototype.openGoogleIntent = function(intent, session, response) {
+IntentHandler.prototype.openGoogleIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
 	var query = intent.slots.Query;
 
 	// If there is no query provided then just open google
 	if (!query || !query.value) {
-		response.tell("I wasn't able to search for that. TODO handle this");
+		responseHandler("I wasn't able to search for that. TODO handle this");
 	} 
 	// Pass the query to event ghost
 	else {
-		eventGhost.searchGoogle(response, query.value);
+		eventGhost.searchGoogle(responseHandler, query.value);
 	}		
 }
 
-IntentHandler.prototype.openTrafficToWorkIntent = function(intent, session, response) {
+IntentHandler.prototype.openTrafficToWorkIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.openTrafficToWork(response);
+	eventGhost.openTrafficToWork(responseHandler);
 }
 
-IntentHandler.prototype.showDashboardIntent = function(intent, session, response) {
+IntentHandler.prototype.showDashboardIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.minimizeScreens(response);
+	eventGhost.minimizeScreens(responseHandler);
 }
 
-IntentHandler.prototype.openWeatherIntent = function(intent, session, response) {
+IntentHandler.prototype.openWeatherIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.openWeather(response);
+	eventGhost.openWeather(responseHandler);
 }
 
-IntentHandler.prototype.powerDownIntent = function(intent, session, response) {
+IntentHandler.prototype.powerDownIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.powerDown(response);
+	eventGhost.powerDown(responseHandler);
 }
 
-IntentHandler.prototype.maximizeScreensIntent = function(intent, session, response) {
+IntentHandler.prototype.maximizeScreensIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.maximizeScreens(response);
+	eventGhost.maximizeScreens(responseHandler);
 }
 
-IntentHandler.prototype.bestParentsIntent = function(intent, session, response) {
-	response.tell("I guess it would probably be Van and Ting");
+IntentHandler.prototype.bestParentsIntent = function(intent, session, responseHandler) {
+	responseHandler("I guess it would probably be Van and Ting");
 }
 
-IntentHandler.prototype.goodbyeIntent = function(intent, session, response) {
+IntentHandler.prototype.goodbyeIntent = function(intent, session, responseHandler) {
 	var speechOutput = "Very good sir, have a great day!";
-	response.tell(speechOutput);
+	responseHandler(speechOutput);
 }
 
-IntentHandler.prototype.togglePauseIntent = function(intent, session, response) {
+IntentHandler.prototype.togglePauseIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.togglePause(response);	
+	eventGhost.togglePause(responseHandler);	
 }
 
-IntentHandler.prototype.movieTimesIntent = function(intent, session, response) {
+IntentHandler.prototype.movieTimesIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost();
-	eventGhost.getSaratogaMovieTimes(response);	
+	eventGhost.getSaratogaMovieTimes(responseHandler);	
 }
 
 // Helper Functions

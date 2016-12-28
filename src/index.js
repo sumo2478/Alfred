@@ -32,7 +32,8 @@ AlfredHandler.prototype.eventHandlers.onSessionStarted = function (sessionStarte
 AlfredHandler.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
     console.log("onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
 
-    intentHandler.welcomeIntent(null, session, response);
+    var greeting = intentHandler.welcomeResponse();
+    response.ask(greeting.message, greeting.reprompt);
 };
 
 AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
@@ -45,68 +46,76 @@ AlfredHandler.prototype.eventHandlers.onSessionEnded = function (sessionEndedReq
  * override intentHandlers to map intent handling functions.
  */
 AlfredHandler.prototype.intentHandlers = {
-	"SmartestIntent": function(intent, session, response) {
-		intentHandler.smartestIntent(intent, session, response);
+	"SmartestIntent": function(intent, session, responseHandler) {
+		intentHandler.smartestIntent(intent, session, responseHandler);
 	},
 
-	"PrettiestIntent": function(intent, session, response) {
-		intentHandler.prettiestIntent(intent, session, response);
+	"PrettiestIntent": function(intent, session, responseHandler) {
+		intentHandler.prettiestIntent(intent, session, responseHandler);
 	},
 
-	"HelloIntent": function(intent, session, response) {
-		intentHandler.welcomeIntent(intent, session, response);
+	"HelloIntent": function(intent, session, responseHandler) {
+		intentHandler.welcomeIntent(intent, session, responseHandler);
 	},
 
-	"ItunesIntent": function(intent, session, response) {
-        intentHandler.openItunesIntent(intent, session, response);  
+	"ItunesIntent": function(intent, session, responseHandler) {
+        intentHandler.openItunesIntent(intent, session, responseHandler);  
 	},
 
-    "GooglePageIntent": function(intent, session, response) {
-        intentHandler.openGoogleIntent(intent, session, response);
+    "GooglePageIntent": function(intent, session, responseHandler) {
+        intentHandler.openGoogleIntent(intent, session, responseHandler);
     },
 
-    "TrafficToWorkIntent": function(intent, session, response) {
-        intentHandler.openTrafficToWorkIntent(intent, session, response);
+    "TrafficToWorkIntent": function(intent, session, responseHandler) {
+        intentHandler.openTrafficToWorkIntent(intent, session, responseHandler);
     },
 
-    "WeatherIntent": function(intent, session, response) {
-        intentHandler.openWeatherIntent(intent, session, response);
+    "WeatherIntent": function(intent, session, responseHandler) {
+        intentHandler.openWeatherIntent(intent, session, responseHandler);
     },
 
-    "PowerDownIntent": function(intent, session, response) {
-        intentHandler.powerDownIntent(intent, session, response);
+    "PowerDownIntent": function(intent, session, responseHandler) {
+        intentHandler.powerDownIntent(intent, session, responseHandler);
     },
 
-    "ShowDashboardIntent": function(intent, session, response) {
-        intentHandler.showDashboardIntent(intent, session, response);
+    "ShowDashboardIntent": function(intent, session, responseHandler) {
+        intentHandler.showDashboardIntent(intent, session, responseHandler);
     },
 
-    "MaximizeScreenIntent": function(intent, session, response) {
-        intentHandler.maximizeScreensIntent(intent, session, response);
+    "MaximizeScreenIntent": function(intent, session, responseHandler) {
+        intentHandler.maximizeScreensIntent(intent, session, responseHandler);
     },
 
-    "BestParentsIntent": function(intent, session, response) {
-        intentHandler.bestParentsIntent(intent, session, response);
+    "BestParentsIntent": function(intent, session, responseHandler) {
+        intentHandler.bestParentsIntent(intent, session, responseHandler);
     },  
 
-    "TogglePauseIntent": function(intent, session, response) {
-        intentHandler.togglePauseIntent(intent, session, response);
+    "TogglePauseIntent": function(intent, session, responseHandler) {
+        intentHandler.togglePauseIntent(intent, session, responseHandler);
     }, 
 
-    "MovieTimesIntent": function(intent, session, response) {
-        intentHandler.movieTimesIntent(intent, session, response);
+    "OpenSessionIntent": function(intent, session, responseHandler) {
+        intentHandler.openSessionIntent(intent, session, responseHandler);
     },
+
+    "CloseSessionIntent": function(intent, session, responseHandler) {
+        intentHandler.closeSessionIntent(intent, session, responseHandler);
+    },
+
+    "MovieTimesIntent": function(intent, session, responseHandler) {
+        intentHandler.movieTimesIntent(intent, session, responseHandler);
+    },    
 
 	"AMAZON.HelpIntent": function (intent, session, response) {
         response.tell("Help");
     },
 
-    "AMAZON.StopIntent": function (intent, session, response) {
-        intentHandler.goodbyeIntent(intent, session, response);  
+    "AMAZON.StopIntent": function (intent, session, responseHandler) {
+        intentHandler.goodbyeIntent(intent, session, responseHandler);  
     },
 
-    "AMAZON.CancelIntent": function (intent, session, response) {
-        intentHandler.goodbyeIntent(intent, session, response);  
+    "AMAZON.CancelIntent": function (intent, session, responseHandler) {
+        intentHandler.goodbyeIntent(intent, session, responseHandler);  
     }
 
 	// Handle Intents here
