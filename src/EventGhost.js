@@ -12,13 +12,6 @@ function EventGhost(responseHandler) {
 }
 
 /**
-Opens itunes on the computer
-*/
-EventGhost.prototype.openItunes = function() {
-	callEchoToEG("ITUNES", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));
-}
-
-/**
 Opens google on the computer
 */
 EventGhost.prototype.openGoogle = function() {

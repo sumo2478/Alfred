@@ -51,11 +51,6 @@ IntentHandler.prototype.prettiestIntent = function(intent, session, responseHand
 	responseHandler(prettiestResponse);
 }
 
-IntentHandler.prototype.openItunesIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost(responseHandler);
-	eventGhost.openItunes();
-}
-
 IntentHandler.prototype.openGoogleIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost(responseHandler);
 	var query = intent.slots.Query;

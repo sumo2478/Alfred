@@ -4,10 +4,6 @@ SmartestIntent who is the smartest person in the world
 PrettiestIntent who is the prettiest of them all
 PrettiestIntent who is the prettiest person in the world
 
-ItunesIntent open itunes
-ItunesIntent bring up itunes
-ItunesIntent display itunes
-
 GooglePageIntent search for {Query}
 GooglePageIntent look up {Query}
 GooglePageIntent I want to know {Query}

@@ -58,10 +58,6 @@ AlfredHandler.prototype.intentHandlers = {
 		intentHandler.welcomeIntent(intent, session, responseHandler);
 	},
 
-	"ItunesIntent": function(intent, session, responseHandler) {
-        intentHandler.openItunesIntent(intent, session, responseHandler);  
-	},
-
     "GooglePageIntent": function(intent, session, responseHandler) {
         intentHandler.openGoogleIntent(intent, session, responseHandler);
     },
