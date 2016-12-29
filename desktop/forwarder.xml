@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EventGhost Version="1722" Guid="{151651B6-C3FE-421C-84EA-A6EF9785BC28}" Time="1482910261.7">
+    <Autostart Name="Autostart" Expanded="True">
+        <Plugin Identifier="Webserver" Guid="{E4305D8E-A3D3-4672-B06E-4EA1F0F6C673}" File="Webserver">
+            gAIoWAQAAABIVFRQcQBNHwlYLAAAAEM6XFByb2dyYW0gRmlsZXMgKHg4NilcRXZlbnRHaG9zdFxBdXRvbWF0aW9ucQFYCgAAAEV2ZW50R2hvc3RxAlgAAAAAcQNoA31xBIlYAQAAACxxBVgCAAAAOztxBmgDaAOIdHEHLg==
+        </Plugin>
+    </Autostart>
+    <Macro Name="Start Program: iTunes.exe">
+        <Event Name="HTTP.ITUNES" />
+        <Action>
+            System.Execute(u'C:\\Program Files (x86)\\iTunes\\iTunes.exe', u'', 0, False, 2, u'', False, False, u'', False, False, False, False)
+        </Action>
+    </Macro>
+    <Macro Name='wx.LaunchDefaultBrowser("www.google.com")'>
+        <Event Name="HTTP.GOOGLE" />
+        <Action>
+            EventGhost.PythonCommand(u'wx.LaunchDefaultBrowser("www.google.com")')
+        </Action>
+    </Macro>
+    <Macro Name="TrafficWork">
+        <Event Name="HTTP.TRAFFICWORK" />
+        <Action>
+            EventGhost.PythonCommand(u'wx.LaunchDefaultBrowser("https://www.google.com/maps/dir/15040+El+Quito+Way,+Saratoga,+CA+95070/950+W+Maude+Ave,+Sunnyvale,+CA/@37.3251484,-122.0999958,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x808e4a80b70027d1:0x80f1a9923a24c4fc!2m2!1d-121.99796!2d37.250085!1m5!1m1!1s0x808fb70101e8b2f1:0xe93aae4c8625af8!2m2!1d-122.0409214!2d37.3924629")')
+        </Action>
+    </Macro>
+    <Macro Name="GoogleSearch">
+        <Event Name="HTTP.GOOGLESEARCH" />
+        <Action>
+            EventGhost.PythonScript(u'searchQuery = eg.event.payload[0]\nurl = "https://www.google.com/search?q=" + searchQuery\n\nwx.LaunchDefaultBrowser(url)')
+        </Action>
+    </Macro>
+    <Macro Name="CNBCNews">
+        <Event Name="HTTP.CNBCNEWS" />
+        <Action>
+            EventGhost.PythonCommand(u'wx.LaunchDefaultBrowser("http://www.cnbc.com/live-tv/")')
+        </Action>
+    </Macro>
+    <Macro Name="Weather">
+        <Event Name="HTTP.WEATHER" />
+        <Action>
+            EventGhost.PythonCommand(u'wx.LaunchDefaultBrowser("https://www.msn.com/en-us/weather/today/Saratoga,California,United-States/we-city-37.2711,-122.014?q=saratoga-california")')
+        </Action>
+    </Macro>
+    <Macro Name="SaratogaMovieTimes">
+        <Event Name="HTTP.SARATOGAMOVIETIMES" />
+        <Action>
+            EventGhost.PythonCommand(u'wx.LaunchDefaultBrowser("http://www.fandango.com/amcsaratoga14_aaecu/theaterpage")')
+        </Action>
+    </Macro>
+    <Macro Name="Minimize">
+        <Event Name="HTTP.MINIMIZE" />
+        <Action>
+            Window.SendKeys(u'{Win+m}', False, 2)
+        </Action>
+    </Macro>
+    <Macro Name="Maximize ">
+        <Event Name="HTTP.MAXIMIZE" />
+        <Action>
+            Window.SendKeys(u'{Win+Shift+m}', False, 2)
+        </Action>
+    </Macro>
+    <Macro Name="PowerDown">
+        <Event Name="HTTP.POWERDOWN" />
+        <Action>
+            System.Hibernate(True)
+        </Action>
+    </Macro>
+    <Macro Name="TogglePause">
+        <Event Name="HTTP.TOGGLEPAUSE" />
+        <Action>
+            Window.SendKeys(u'{Space}', False, 2)
+        </Action>
+    </Macro>
+</EventGhost>
