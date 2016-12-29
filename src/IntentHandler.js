@@ -52,12 +52,12 @@ IntentHandler.prototype.prettiestIntent = function(intent, session, responseHand
 }
 
 IntentHandler.prototype.openItunesIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.openItunes(responseHandler);
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.openItunes();
 }
 
 IntentHandler.prototype.openGoogleIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
+	var eventGhost = new EventGhost(responseHandler);
 	var query = intent.slots.Query;
 
 	// If there is no query provided then just open google
@@ -66,33 +66,33 @@ IntentHandler.prototype.openGoogleIntent = function(intent, session, responseHan
 	} 
 	// Pass the query to event ghost
 	else {
-		eventGhost.searchGoogle(responseHandler, query.value);
+		eventGhost.searchGoogle(query.value);
 	}		
 }
 
 IntentHandler.prototype.openTrafficToWorkIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.openTrafficToWork(responseHandler);
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.openTrafficToWork();
 }
 
 IntentHandler.prototype.showDashboardIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.minimizeScreens(responseHandler);
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.minimizeScreens();
 }
 
 IntentHandler.prototype.openWeatherIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.openWeather(responseHandler);
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.openWeather();
 }
 
 IntentHandler.prototype.powerDownIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.powerDown(responseHandler);
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.powerDown();
 }
 
 IntentHandler.prototype.maximizeScreensIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.maximizeScreens(responseHandler);
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.maximizeScreens();
 }
 
 IntentHandler.prototype.bestParentsIntent = function(intent, session, responseHandler) {
@@ -105,13 +105,13 @@ IntentHandler.prototype.goodbyeIntent = function(intent, session, responseHandle
 }
 
 IntentHandler.prototype.togglePauseIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.togglePause(responseHandler);	
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.togglePause();	
 }
 
 IntentHandler.prototype.movieTimesIntent = function(intent, session, responseHandler) {
-	var eventGhost = new EventGhost();
-	eventGhost.getSaratogaMovieTimes(responseHandler);	
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.getSaratogaMovieTimes();	
 }
 
 // Helper Functions

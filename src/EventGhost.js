@@ -3,88 +3,103 @@ var http = require('http');
 var EG_IP = process.env.EVENT_GHOST_IP 
 var EG_PORT = process.env.EVENT_GHOST_PORT
 
-function EventGhost() {
+function EventGhost(responseHandler) {
+    if (!responseHandler) {
+        throw "Need to pass in a response handler";
+    }
 
+    this.responseHandler = responseHandler
 }
 
 /**
 Opens itunes on the computer
 */
-EventGhost.prototype.openItunes = function(response) {
-	callEchoToEG("ITUNES", defaultSuccessCallback(response), defaultFailureCallback(response));
+EventGhost.prototype.openItunes = function() {
+	callEchoToEG("ITUNES", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));
 }
 
 /**
 Opens google on the computer
 */
-EventGhost.prototype.openGoogle = function(response) {
-	callEchoToEG("GOOGLE", defaultSuccessCallback(response), defaultFailureCallback(response));
+EventGhost.prototype.openGoogle = function() {
+    var googleUrl = "http://www.google.com";
+	this.openWebpage(googleUrl);
 }
 
 /**
 Searches query on google
 */
-EventGhost.prototype.searchGoogle = function(response, query) {
-	callEchoToEG("GOOGLESEARCH", defaultSuccessCallback(response), defaultFailureCallback(response), query);
+EventGhost.prototype.searchGoogle = function(query) {
+    var searchUrl = "https://www.google.com/search?q=" + query;
+	this.openWebpage(searchUrl);
 }
 
 /**
 Brings up the traffic report from home to work
 */
-EventGhost.prototype.openTrafficToWork = function(responseHandler) {
-	callEchoToEG("TRAFFICWORK", defaultSuccessCallback(responseHandler), defaultFailureCallback(responseHandler));	
+EventGhost.prototype.openTrafficToWork = function() {
+    var trafficUrl = "https://www.google.com/maps/dir/15040+El+Quito+Way,+Saratoga,+CA+95070/950+W+Maude+Ave,+Sunnyvale,+CA/@37.3251484,-122.0999958,12z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x808e4a80b70027d1:0x80f1a9923a24c4fc!2m2!1d-121.99796!2d37.250085!1m5!1m1!1s0x808fb70101e8b2f1:0xe93aae4c8625af8!2m2!1d-122.0409214!2d37.3924629";
+    this.openWebpage(trafficUrl);
 }
 
 /**
 Starts playing CNBC News Livestream 
 */
-EventGhost.prototype.openNews = function(response) {
-	callEchoToEG("CNBCNEWS", defaultSuccessCallback(response), defaultFailureCallback(response));	
+EventGhost.prototype.openNews = function() {
+    var newsUrl = "http://www.cnbc.com/live-tv/";
+    this.openWebpage(newsUrl);
 }
 
 /**
 Opens the weather
 */
-EventGhost.prototype.openWeather = function(response) {
-	callEchoToEG("WEATHER", defaultSuccessCallback(response), defaultFailureCallback(response));	
+EventGhost.prototype.openWeather = function() {
+    var weatherUrl = "https://www.msn.com/en-us/weather/today/Saratoga,California,United-States/we-city-37.2711,-122.014?q=saratoga-california";
+    this.openWebpage(weatherUrl);
 }
 
 /**
 Powes the system down
 */
-EventGhost.prototype.powerDown = function(response) {
-	callEchoToEG("POWERDOWN", defaultSuccessCallback(response), defaultFailureCallback(response));	
+EventGhost.prototype.powerDown = function() {
+	callEchoToEG("POWERDOWN", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));	
 }
 
 /**
 Minimizes all screens
 */
-EventGhost.prototype.minimizeScreens = function(response) {
-	callEchoToEG("MINIMIZE", defaultSuccessCallback(response), defaultFailureCallback(response));	
+EventGhost.prototype.minimizeScreens = function() {
+	callEchoToEG("MINIMIZE", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));	
 }
 
 /**
 Maximizes all screens
 */
-EventGhost.prototype.maximizeScreens = function(response) {
-	callEchoToEG("MAXIMIZE", defaultSuccessCallback(response), defaultFailureCallback(response));	
+EventGhost.prototype.maximizeScreens = function() {
+	callEchoToEG("MAXIMIZE", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));	
 }
 
 /**
 Toggles the puase button
 */
-EventGhost.prototype.togglePause = function(response) {
-    callEchoToEG("TOGGLEPAUSE", defaultSuccessCallback(response), defaultFailureCallback(response));   
+EventGhost.prototype.togglePause = function() {
+    callEchoToEG("TOGGLEPAUSE", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));   
 }
 
 /**
 Pulls up saratoga amc movie times
 */
-EventGhost.prototype.getSaratogaMovieTimes = function(response) {
-    callEchoToEG("SARATOGAMOVIETIMES", defaultSuccessCallback(response), defaultFailureCallback(response));   
+EventGhost.prototype.getSaratogaMovieTimes = function() {
+    var movieUrl = "http://www.fandango.com/amcsaratoga14_aaecu/theaterpage";
+    this.openWebpage(movieUrl);
 }
 
 // Helper function to call network request to event ghost
+EventGhost.prototype.openWebpage = function(url, responseHandler) {
+    var handler = responseHandler || this.responseHandler;
+    callEchoToEG("OPENWEBPAGE", defaultSuccessCallback(handler), defaultFailureCallback(handler), url);
+}
+
 function callEchoToEG(eventName, successCallback, failureCallback, queryParameter) {
 	// Options included where we should send the request to with or without basic auth
     var EG_uri = '/index.html?' + eventName;
