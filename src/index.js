@@ -70,6 +70,10 @@ AlfredHandler.prototype.intentHandlers = {
         intentHandler.openWeatherIntent(intent, session, responseHandler);
     },
 
+    "GoogleDriveIntent": function(intent, session, responseHandler) {
+        intentHandler.openGoogleDriveIntent(intent, session, responseHandler);
+    },
+
     "PowerDownIntent": function(intent, session, responseHandler) {
         intentHandler.powerDownIntent(intent, session, responseHandler);
     },
@@ -77,6 +81,14 @@ AlfredHandler.prototype.intentHandlers = {
     "ShowDashboardIntent": function(intent, session, responseHandler) {
         intentHandler.showDashboardIntent(intent, session, responseHandler);
     },
+
+    "VolumeUpIntent": function(intent, session, responseHandler) {
+        intentHandler.volumeUpIntent(intent, session, responseHandler);
+    },
+
+    "VolumeDownIntent": function(intent, session, responseHandler) {
+        intentHandler.volumeDownIntent(intent, session, responseHandler);
+    },        
 
     "MaximizeScreenIntent": function(intent, session, responseHandler) {
         intentHandler.maximizeScreensIntent(intent, session, responseHandler);

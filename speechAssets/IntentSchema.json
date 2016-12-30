@@ -25,6 +25,9 @@
 			"intent": "WeatherIntent"
 		},
 		{
+			"intent": "GoogleDriveIntent"
+		},		
+		{
 			"intent": "ShowDashboardIntent"
 		},
 		{
@@ -42,6 +45,12 @@
 		{
 			"intent": "MovieTimesIntent"
 		},
+		{
+			"intent": "VolumeUpIntent"
+		},
+		{
+			"intent": "VolumeDownIntent"
+		},				
 		{
 			"intent": "OpenSessionIntent"
 		},

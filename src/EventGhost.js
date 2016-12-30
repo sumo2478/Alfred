@@ -52,6 +52,14 @@ EventGhost.prototype.openWeather = function() {
 }
 
 /**
+Opens the google drive link
+*/
+EventGhost.prototype.openGoogleDrive = function() {
+    var googleDriveUrl = "https://docs.google.com/document/d/1n2tc40S7oh1M70_TnYzZiVJeARlN47mTjSS9f_AghFM/edit?usp=sharing";
+    this.openWebpage(googleDriveUrl);
+}
+
+/**
 Powes the system down
 */
 EventGhost.prototype.powerDown = function() {
@@ -77,6 +85,20 @@ Toggles the puase button
 */
 EventGhost.prototype.togglePause = function() {
     callEchoToEG("TOGGLEPAUSE", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));   
+}
+
+/**
+Turns up the volume
+*/
+EventGhost.prototype.turnUpVolume = function() {
+    callEchoToEG("VOLUMEUP", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));   
+}
+
+/**
+Turns down the volume
+*/
+EventGhost.prototype.turnDownVolume = function() {
+    callEchoToEG("VOLUMEDOWN", defaultSuccessCallback(this.responseHandler), defaultFailureCallback(this.responseHandler));   
 }
 
 /**
@@ -142,7 +164,8 @@ function callEchoToEG(eventName, successCallback, failureCallback, queryParamete
 function defaultSuccessCallback(responseHandler) {
 	if (responseHandler) {
 		return function() {
-			responseHandler("Right away sir");
+            var successMessage = randomSuccessResponse();
+			responseHandler(successMessage);
 		}
 	} else {
 		return function() {}
@@ -157,6 +180,19 @@ function defaultFailureCallback(responseHandler) {
 	} else {
 		return function() {}
 	}	
+}
+
+function randomSuccessResponse() {
+    var randomNumber = Math.floor((Math.random() * 4));
+    if (randomNumber == 0) {
+        return "Right away";
+    } else if (randomNumber == 1) {
+        return "Okay";
+    } else if (randomNumber == 2) {
+        return "Sounds good"
+    } else if (randomNumber == 3) {
+        return "Yes sir";
+    }
 }
 
 module.exports = EventGhost;

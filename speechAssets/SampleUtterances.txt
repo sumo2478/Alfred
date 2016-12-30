@@ -25,6 +25,14 @@ PowerDownIntent shut down
 PowerDownIntent I'm leaving
 PowerDownIntent I'm going to work
 
+VolumeUpIntent increase the volume
+VolumeUpIntent louder
+VolumeUpIntent turn up the volume
+
+VolumeDownIntent decrease the volume
+VolumeDownIntent softer
+VolumeDownIntent turn down the volume
+
 ShowDashboardIntent bring up the dashboard
 ShowDashboardIntent minimize all screens
 ShowDashboardIntent show me the hud
@@ -68,6 +76,9 @@ OpenSessionIntent begin session
 CloseSessionIntent close the session
 CloseSessionIntent exit session
 CloseSessionIntent end session
+
+GoogleDriveIntent open google drive
+GoogleDriveIntent show google drive
 
 HelloIntent good morning
 HelloIntent good evening

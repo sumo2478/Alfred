@@ -80,6 +80,11 @@ IntentHandler.prototype.openWeatherIntent = function(intent, session, responseHa
 	eventGhost.openWeather();
 }
 
+IntentHandler.prototype.openGoogleDriveIntent = function(intent, session, responseHandler) {
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.openGoogleDrive();
+}
+
 IntentHandler.prototype.powerDownIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost(responseHandler);
 	eventGhost.powerDown();
@@ -88,6 +93,16 @@ IntentHandler.prototype.powerDownIntent = function(intent, session, responseHand
 IntentHandler.prototype.maximizeScreensIntent = function(intent, session, responseHandler) {
 	var eventGhost = new EventGhost(responseHandler);
 	eventGhost.maximizeScreens();
+}
+
+IntentHandler.prototype.volumeUpIntent = function(intent, session, responseHandler) {
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.turnUpVolume();
+}
+
+IntentHandler.prototype.volumeDownIntent = function(intent, session, responseHandler) {
+	var eventGhost = new EventGhost(responseHandler);
+	eventGhost.turnDownVolume();
 }
 
 IntentHandler.prototype.bestParentsIntent = function(intent, session, responseHandler) {
@@ -138,7 +153,7 @@ function getAssistanceGreeting() {
 	if (randomNumber == 0) {
 		return "How may I be of assistance?";
 	} else if (randomNumber == 1) {
-		return "Alfred at your service";
+		return "Donna at your service";
 	} else {
 		return "Error";
 	}
