@@ -72,7 +72,7 @@ AlexaSkill.prototype.eventHandlers = {
                 response.ask("What next?", "What next?");
             } else if (isQuestion) {    
                 console.log("Asked question: " + message);
-                repromptMessage = reprompt || "";            
+                var repromptMessage = reprompt || "";            
                 response.ask(message, repromptMessage);
             } else {
                 console.log("Performed action")
